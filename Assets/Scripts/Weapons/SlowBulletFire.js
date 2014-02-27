@@ -32,6 +32,8 @@ function Fire () {
 	
 	if (audio && fireSound) {
 		audio.clip = GetRandomSoundFromArray (fireSound);
+		audio.pitch = Random.Range(0.55, 1.55);
+		Debug.Log(audio.pitch);
 		audio.Play ();
 	}
 	

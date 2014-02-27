@@ -72,6 +72,7 @@ function DoElectricArc () {
 	// Play attack sound
 	
 	audioSource.clip = GetRandomSoundFromArray (zapSound);
+	//Debug.Log(audioSource.clip);
 	audioSource.Play ();
 	//buzz.didChargeEffect = false;
 	
