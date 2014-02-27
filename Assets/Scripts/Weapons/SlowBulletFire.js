@@ -3,11 +3,20 @@
 var bulletPrefab : GameObject;
 var frequency : float = 2;
 var coneAngle : float = 1.5;
-var fireSound : AudioClip;
+var fireSound : AudioClip[];
 var firing : boolean = false;
 
 private var lastFireTime : float = -1;
 
+
+static function GetRandomSoundFromArray (audioClipArray : AudioClip[])  : AudioClip {
+	if (audioClipArray.Length > 0) {
+		return audioClipArray[Random.Range (0, audioClipArray.Length)];
+	
+	}
+
+
+}
 function Update () {
 	if (firing) {
 		if (Time.time > lastFireTime + 1 / frequency) {
@@ -22,7 +31,7 @@ function Fire () {
 	Spawner.Spawn (bulletPrefab, transform.position, transform.rotation * coneRandomRotation);
 	
 	if (audio && fireSound) {
-		audio.clip = fireSound;
+		audio.clip = GetRandomSoundFromArray (fireSound);
 		audio.Play ();
 	}
 	

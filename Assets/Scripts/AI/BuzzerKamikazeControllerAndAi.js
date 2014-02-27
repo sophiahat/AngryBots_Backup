@@ -3,7 +3,7 @@
 // Public member data
 public var motor : MovementMotor;
 public var electricArc : LineRenderer;
-public var zapSound : AudioClip;
+public var zapSound : AudioClip[];
 public var damageAmount : float = 5.0f;
 
 private var player : Transform;
@@ -15,6 +15,14 @@ private var direction : Vector3;
 private var rechargeTimer : float = 1.0f;
 private var audioSource : AudioSource;
 private var zapNoise : Vector3 = Vector3.zero;
+
+static function GetRandomSoundFromArray (audioClipArray : AudioClip[]) : AudioClip {
+	if (audioClipArray.Length > 0) {
+		Debug.Log(audioClipArray[Random.Range(0, audioClipArray.Length)]);
+		return audioClipArray[Random.Range(0, audioClipArray.Length)];
+	
+	}
+}
 
 function Awake () {
 	character = motor.transform;
@@ -63,7 +71,7 @@ function DoElectricArc () {
 		return;
 	// Play attack sound
 	
-	audioSource.clip = zapSound;
+	audioSource.clip = GetRandomSoundFromArray (zapSound);
 	audioSource.Play ();
 	//buzz.didChargeEffect = false;
 	
